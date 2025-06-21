@@ -42,6 +42,10 @@ public class ProductInfoService {
             if (productInfo == null) {
                 throw new RuntimeException("ProductInfo is null");
             }
+            if (productInfo.getOneCategoryId() == null) {
+                // 前端可能未传递分类信息，默认设置为0以满足数据库非空约束
+                productInfo.setOneCategoryId(0);
+            }
             productInfo.setCreatedTime(DateUtils.getTime());
             return productInfoDao.insertProductInfo(productInfo);
         } catch (Exception e) {
