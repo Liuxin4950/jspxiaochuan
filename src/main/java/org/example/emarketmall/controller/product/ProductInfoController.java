@@ -142,14 +142,15 @@ public class ProductInfoController extends HttpServlet {
     }
 
     private AjaxResult addProductInfo(ProductInfo productInfo) {
-        if (productInfo!= null) {
-            if (productInfoService.insertProductInfo(productInfo) > 0) {
-                return AjaxResult.success();
-            } else {
-                return AjaxResult.error("新增商品信息对象内容异常");
-            }
-        } else if (productInfo.getId()!= null) {
+        if (productInfo == null) {
+            return AjaxResult.error("新增商品信息对象内容异常");
+        }
+        if (productInfo.getId() != null) {
+            // 新增操作不应该携带ID
             return AjaxResult.error("新增ID内容异常");
+        }
+        if (productInfoService.insertProductInfo(productInfo) > 0) {
+            return AjaxResult.success();
         }
         return AjaxResult.error("新增商品信息对象内容异常");
     }
