@@ -88,7 +88,7 @@ public class ProductInfoDaoImp implements ProductInfoDao {
     public int insertProductInfo(ProductInfo productInfo) {
         // 修正SQL语法：移除列名的单引号，使用VALUES关键字，修正列名拼写
         String sql = "INSERT INTO product_info " +
-                "(delFlag, createBy, createTime, updateBy, updateTime, remark, " +
+                "(delFlag, createdBy, createdTime, updatedBy, updatedTime, remark, " +
                 "productCode, productName, oneCategoryId, twoCategoryId, " +
                 "price, publishStatus, productionDate, shelfLife, description) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -102,10 +102,10 @@ public class ProductInfoDaoImp implements ProductInfoDao {
         // 修正参数顺序和列名映射
         int i = new ObjectUtil<ProductInfo>().add(sql,
                 productInfo.getDelFlag(),       // delFlag
-                productInfo.getCreatedBy(),      // createBy (假设BaseEntity中定义)
-                productInfo.getCreatedTime(),    // createTime
-                productInfo.getUpdatedBy(),      // updateBy
-                productInfo.getUpdatedTime(),    // updateTime
+                productInfo.getCreatedBy(),      // createdBy
+                productInfo.getCreatedTime(),    // createdTime
+                productInfo.getUpdatedBy(),      // updatedBy
+                productInfo.getUpdatedTime(),    // updatedTime
                 productInfo.getRemark(),        // remark
                 productInfo.getProductCode(),   // productCode
                 productInfo.getProductName(),   // productName
